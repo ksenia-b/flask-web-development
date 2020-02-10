@@ -1,0 +1,20 @@
+from flask import Flask
+from flask import request
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    user_agent = request.headers.get('User-Agent')
+    return '<p>Your browser is %s</p>'% user_agent
+
+
+@app.route('/user/<name>')
+def user(name):
+    user_agent = request.headers.get('User-Agent')
+    # return '<p>Your browser is %s</p>' % user_agent
+    return '<h1>Hello, {}!</h1> your browser is {}'.format(name, user_agent)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
